@@ -1,29 +1,24 @@
-clientcache
+Camel CDI Integration
 ========================
 
 What is it?
 -----------
 
-This is your project! It is a sample, deployable Maven 3 project to help you get your foot in the door developing with Java EE 6 on JBoss Enterprise Application Platform 6 or JBoss AS 7.1. 
-
-This project is setup to allow you to create a compliant Java EE 6 application using JSF 2.0, CDI 1.0, EJB 3.1, JPA 2.0 and Bean Validation 1.0. It includes a persistence unit and some sample persistence and transaction code to introduce you to database access in enterprise Java. 
-
+This is a sample project for Apache Camel and CDI Integration JBoss EAP 6. 
 
 System requirements
 -------------------
 
-All you need to build this project is Java 6.0 (Java SDK 1.6) or better, Maven 3.0 or better.
-
-The application this project produces is designed to be run on JBoss Enterprise Application Platform 6 or JBoss AS 7.1. 
+All you need to build this project is Java 6.0 (Java SDK 1.6) or better, Maven 3.0 or better and JBoss Enterprise Application Platform 6
 
 
 Configure Maven
 ---------------
 
-If you have not yet done so, you must [Configure Maven](../README.html/#mavenconfiguration) before testing the quickstarts.
+Configure your settings.xml with the example in example-settings.xml or build with  "-s example-settings.xml"
 
 
-Start JBoss Enterprise Application Platform 6 or JBoss AS 7.1
+Start JBoss Enterprise Application Platform 6 
 -------------------------
 
 1. Open a command line and navigate to the root of the JBoss server directory.
@@ -33,24 +28,34 @@ Start JBoss Enterprise Application Platform 6 or JBoss AS 7.1
         For Windows: JBOSS_HOME\bin\standalone.bat
 
 
-Build and Deploy the Quickstart
+Build and Deploy the application
 -------------------------
 
-_NOTE: The following build command assumes you have configured your Maven user settings. If you have not, you must include Maven setting arguments on the command line. See [Build and Deploy the Quickstarts](../README.html/#buildanddeploy) for complete instructions and additional options._
-
 1. Make sure you have started the JBoss Server as described above.
-2. Open a command line and navigate to the root directory of this quickstart.
-3. Type this command to build and deploy the archive:
+2. Create the directory structure for copying files:
+	
+	$ mkdir -p /tmp/data/inbox
+	$ mkdir -p /tmp/data/outbox
+	
+3. Open a command line and navigate to the root directory of this project.
+4. Type this command to build and deploy the archive:
 
         mvn clean package jboss-as:deploy
+        
+alternatively if you haven't configured the settings.xml
+	
+	mvn -s example-settings.xml clean package jboss-as:deploy
 
-4. This will deploy `target/clientcache.war` to the running instance of the server.
+5. This will deploy `target/cdi-camel.war` to the running instance of the server and start the project
+6. Drop a file in /tmp/data/inbox. For example:
+
+	$ echo "Some test content" > /tmp/data/inbox
+	
+7. Wait 1 sec and then verify that the file has been moved to outbox dir
+	$ ls -R /tmp/data
+	 
 
 
-Access the application 
----------------------
- 
-The application will be running at the following URL: <http://localhost:8080/clientcache/>.
 
 
 Undeploy the Archive
@@ -66,18 +71,9 @@ Undeploy the Archive
 Run the Arquillian tests
 ----------------------------
 
-This quickstart provides Arquillian tests. By default, these tests are configured to be skipped as Arquillian tests require the use of a container. 
+TODO
 
-_NOTE: The following commands assume you have configured your Maven user settings. If you have not, you must include Maven setting arguments on the command line. See [Run the Arquillian Tests](../README.html/#arquilliantests) for complete instructions and additional options._
-
-1. Make sure you have started the JBoss Server as described above.
-2. Open a command line and navigate to the root directory of this quickstart.
-3. Type the following command to run the test goal with the following profile activated:
-
-        mvn clean test -Parq-jbossas-remote 
-
-
-Run the Quickstart in JBoss Developer Studio or Eclipse
+Run the Example in JBoss Developer Studio or Eclipse
 -------------------------------------
 You can also start the server and deploy the quickstarts from Eclipse using JBoss tools. For more information, see [Use JBoss Developer Studio or Eclipse to Run the Quickstarts](../README.html/#useeclipse) 
 
