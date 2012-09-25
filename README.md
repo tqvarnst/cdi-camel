@@ -43,7 +43,7 @@ Build and Deploy the application
         mvn clean package jboss-as:deploy
         
 alternatively if you haven't configured the settings.xml
-	
+
         mvn -s example-settings.xml clean package jboss-as:deploy
 
 5. This will deploy `target/cdi-camel.war` to the running instance of the server and start the project
