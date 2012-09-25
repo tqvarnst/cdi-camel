@@ -34,8 +34,8 @@ Build and Deploy the application
 1. Make sure you have started the JBoss Server as described above.
 2. Create the directory structure for copying files:
 	
-	$ mkdir -p /tmp/data/inbox
-	$ mkdir -p /tmp/data/outbox
+        $ mkdir -p /tmp/data/inbox
+        $ mkdir -p /tmp/data/outbox
 	
 3. Open a command line and navigate to the root directory of this project.
 4. Type this command to build and deploy the archive:
@@ -44,15 +44,15 @@ Build and Deploy the application
         
 alternatively if you haven't configured the settings.xml
 	
-	mvn -s example-settings.xml clean package jboss-as:deploy
+        mvn -s example-settings.xml clean package jboss-as:deploy
 
 5. This will deploy `target/cdi-camel.war` to the running instance of the server and start the project
 6. Drop a file in /tmp/data/inbox. For example:
 
-	$ echo "Some test content" > /tmp/data/inbox
+        $ echo "Some test content" > /tmp/data/inbox
 	
 7. Wait 1 sec and then verify that the file has been moved to outbox dir
-	$ ls -R /tmp/data
+        $ ls -R /tmp/data
 	 
 
 
